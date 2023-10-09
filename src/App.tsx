@@ -1,10 +1,17 @@
 import React from "react";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
+import Header from "./ components/layout/Header";
+import { DrawerContextProvider } from "./context/DrawerContext";
 
 function App() {
   return (
-    <div className="text-white bg-black h-full w-full">
-      <h1 className="text-4xl">Hello World</h1>
-    </div>
+    <main>
+      <DrawerContextProvider>
+        <Header />
+        <RouterProvider router={router}></RouterProvider>
+      </DrawerContextProvider>
+    </main>
   );
 }
 
