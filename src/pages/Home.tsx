@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   return (
-    <div className="w-full h-full mx-auto py-6 px-[60px] flex flex-col">
+    <div className="w-full mx-auto py-6 px-[60px] flex flex-col">
       <LocationsList />
       <Link
         to="/addLocation"
