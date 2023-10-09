@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       colors: {
         primaryBlue: "#1479FF",
+        miscBg: "#F8F9FD",
+        deleteBtn: "#FE5656",
       },
       animation: {
         "input-focus": "input-focus 0.1s ease-out forwards",
@@ -19,6 +21,9 @@ module.exports = {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
         },
+      },
+      opacity: {
+        15: "0.15",
       },
     },
   },

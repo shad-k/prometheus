@@ -1,18 +1,25 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
-import router from "./router";
-import Header from "./ components/layout/Header";
-import { DrawerContextProvider } from "./context/DrawerContext";
+import { Provider } from "react-redux";
 
-function App() {
+import router from "./router";
+import Header from "./components/layout/Header";
+import { DrawerContextProvider } from "./context/DrawerContext";
+import { store } from "./store";
+
+const App: React.FC = () => {
   return (
-    <main>
-      <DrawerContextProvider>
-        <Header />
-        <RouterProvider router={router}></RouterProvider>
-      </DrawerContextProvider>
-    </main>
+    <Provider store={store}>
+      <main className="flex flex-col w-full h-full">
+        <DrawerContextProvider>
+          <Header />
+          <div className="w-full h-[calc(100%-120px)]">
+            <RouterProvider router={router}></RouterProvider>
+          </div>
+        </DrawerContextProvider>
+      </main>
+    </Provider>
   );
-}
+};
 
 export default App;
