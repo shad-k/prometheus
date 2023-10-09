@@ -6,8 +6,6 @@ type LatLon = {
   lon: number;
 };
 
-console.log(process.env.REACT_APP_PROMETHEUS_API_KEY);
-
 export const weatherApi = createApi({
   reducerPath: "weatherApi",
   baseQuery: fetchBaseQuery({

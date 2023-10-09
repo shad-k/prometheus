@@ -4,6 +4,8 @@ import LocationListItemSkeleton from "./LocationListItemSkeleton";
 import { BiChevronDown } from "react-icons/bi";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useGetWeatherDataByLocationQuery } from "../../store/services/api/weather";
+import { useDispatch } from "react-redux";
+import { removeLocation } from "../../store/features/locations/locationsSlice";
 
 type LocationListItemProps = {
   location: Location;
@@ -11,6 +13,8 @@ type LocationListItemProps = {
 
 const LocationListItem: React.FC<LocationListItemProps> = ({ location }) => {
   const { data, error, isLoading } = useGetWeatherDataByLocationQuery(location);
+
+  const dispatch = useDispatch();
 
   if (isLoading) {
     return <LocationListItemSkeleton />;
@@ -31,14 +35,24 @@ const LocationListItem: React.FC<LocationListItemProps> = ({ location }) => {
               {data.weather[0].description}
             </div>
           </div>
-          <button className="rounded h-10 w-[162px] flex items-center text-sm text-white overflow-hidden">
-            <div className="h-full bg-deleteBtn hover:bg-deleteBtn/80 flex-1 flex items-center justify-center text-sm">
+          <div className="rounded h-10 w-[162px] flex items-center text-sm text-white overflow-hidden">
+            <button
+              className="h-full bg-deleteBtn hover:bg-deleteBtn/80 flex-1 flex items-center justify-center text-sm"
+              onClick={() =>
+                dispatch(
+                  removeLocation({
+                    lat: location.lat,
+                    lon: location.lon,
+                  }),
+                )
+              }
+            >
               Delete
-            </div>
-            <div className="bg-deleteBtn hover:bg-deleteBtn/80 w-10 border-l-2 border-white h-full flex items-center justify-center text-2xl">
+            </button>
+            <button className="bg-deleteBtn hover:bg-deleteBtn/80 w-10 border-l-2 border-white h-full flex items-center justify-center text-2xl">
               <BiChevronDown />
-            </div>
-          </button>
+            </button>
+          </div>
         </div>
         <div className="bg-miscBg h-9 rounded-md flex items-center text-gray-500 gap-6 px-3 py-2">
           <div className="flex items-center gap-3">

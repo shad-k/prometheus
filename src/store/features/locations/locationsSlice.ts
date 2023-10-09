@@ -16,12 +16,20 @@ export const locationsSlice = createSlice({
   reducers: {
     addLocation: (state, action) => {
       state.locations.push(action.payload.location);
+      localStorage.setItem(
+        LOCAL_STORAGE_LOCATIONS_KEY,
+        JSON.stringify(state.locations),
+      );
     },
     removeLocation: (state, action) => {
       state.locations = state.locations.filter(
         (location) =>
           location.lat !== action.payload.lat &&
           location.lon !== action.payload.lon,
+      );
+      localStorage.setItem(
+        LOCAL_STORAGE_LOCATIONS_KEY,
+        JSON.stringify(state.locations),
       );
     },
   },
