@@ -7,7 +7,10 @@ type HamburgerMenuProps = {
 
 const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ onClose }) => {
   return (
-    <div className="bg-primaryBlue/50 w-full h-full text-white p-6 flex flex-col gap-4">
+    <div
+      className="bg-primaryBlue/50 w-full h-full text-white p-6 flex flex-col gap-4"
+      data-testid="hamburger-menu"
+    >
       <div className="flex items-center justify-end">
         <button onClick={onClose} className="text-2xl">
           <AiOutlineClose />

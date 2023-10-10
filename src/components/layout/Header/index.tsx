@@ -4,8 +4,8 @@ import {
   AiOutlineMenu,
   AiOutlineCloseCircle,
 } from "react-icons/ai";
-import useDrawer from "../../hooks/useDrawer";
-import HamburgerMenu from "./HamburgerMenu";
+import useDrawer from "../../../hooks/useDrawer";
+import HamburgerMenu from "../HamburgerMenu";
 
 const Header: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
@@ -30,6 +30,7 @@ const Header: React.FC = () => {
               type="text"
               className="h-8 w-0 animate-input-focus rounded-md px-2 text-black bg-white"
               autoFocus
+              data-testid="search-input"
             />
             <button onClick={() => setIsSearchOpen(false)} className="text-2xl">
               <AiOutlineCloseCircle />
@@ -39,6 +40,7 @@ const Header: React.FC = () => {
           <button
             className="text-white text-2xl"
             onClick={() => setIsSearchOpen(true)}
+            data-testid="search-icon"
           >
             <AiOutlineSearch />
           </button>
