@@ -12,7 +12,7 @@ type LocationListItemProps = {
 };
 
 const LocationListItem: React.FC<LocationListItemProps> = ({ location }) => {
-  const { data, error, isLoading } = useGetWeatherDataByLocationQuery(location);
+  const { data, isLoading } = useGetWeatherDataByLocationQuery(location);
 
   const dispatch = useDispatch();
 

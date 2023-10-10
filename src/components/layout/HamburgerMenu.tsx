@@ -13,9 +13,13 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ onClose }) => {
           <AiOutlineClose />
         </button>
       </div>
-      <ul>
-        <li>Home</li>
-        <li>Add Locations</li>
+      <ul className="flex flex-col text-lg gap-3">
+        <a href="/" className="hover:bg-white/10 p-2 rounded">
+          Home
+        </a>
+        <a href="/addLocation" className="hover:bg-white/10 p-2 rounded">
+          Add Location
+        </a>
       </ul>
     </div>
   );

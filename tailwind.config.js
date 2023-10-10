@@ -10,7 +10,7 @@ module.exports = {
       },
       animation: {
         "input-focus": "input-focus 0.1s ease-out forwards",
-        drawer: "drawer 50ms ease-out forwards",
+        drawer: "drawer 0.2s ease-out forwards",
       },
       keyframes: {
         "input-focus": {

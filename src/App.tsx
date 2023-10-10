@@ -10,14 +10,14 @@ import { store } from "./store";
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <main className="flex flex-col w-full h-full">
-        <DrawerContextProvider>
+      <DrawerContextProvider>
+        <main className="flex flex-col w-full h-full">
           <Header />
           <div className="w-full h-[calc(100%-120px)]">
-            <RouterProvider router={router}></RouterProvider>
+            <RouterProvider router={router} />
           </div>
-        </DrawerContextProvider>
-      </main>
+        </main>
+      </DrawerContextProvider>
     </Provider>
   );
 };

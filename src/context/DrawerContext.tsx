@@ -1,5 +1,5 @@
 import React from "react";
-import Drawer from "../components/layout/Drawer";
+import Drawer from "../components/common/Drawer";
 
 const DrawerContext = React.createContext({
   isOpen: false,
