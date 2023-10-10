@@ -1,40 +1,31 @@
 import React from "react";
-import { Location } from "../../types";
-import LocationListItemSkeleton from "./LocationListItemSkeleton";
+import { useDispatch } from "react-redux";
 import { BiChevronDown } from "react-icons/bi";
 import { BsArrowUpRight } from "react-icons/bs";
-import { useGetWeatherDataByLocationQuery } from "../../store/services/api/weather";
-import { useDispatch } from "react-redux";
-import { removeLocation } from "../../store/features/locations/locationsSlice";
-import LocationListItemError from "./LocationListItemError";
 
-type LocationListItemProps = {
+import { removeLocation } from "../../store/features/locations/locationsSlice";
+import { Location } from "../../types";
+
+type LocationListItemErrorProps = {
   location: Location;
 };
 
-const LocationListItem: React.FC<LocationListItemProps> = ({ location }) => {
-  const { data, isLoading } = useGetWeatherDataByLocationQuery(location);
-
+const LocationListItemError: React.FC<LocationListItemErrorProps> = ({
+  location,
+}) => {
   const dispatch = useDispatch();
 
-  if (isLoading) {
-    return <LocationListItemSkeleton />;
-  }
-
-  if (data) {
-    return (
+  return (
+    <div>
       <div>
         <div className="flex items-center gap-4 py-4">
-          <div className="bg-primaryBlue/15 h-20 w-20 rounded-[10px] text-primaryBlue text-xl font-medium flex items-center justify-center">
-            {data.main.temp.toFixed(1)}'C
-          </div>
+          <div className="bg-primaryBlue/15 h-20 w-20 rounded-[10px] text-primaryBlue text-xl font-medium flex items-center justify-center"></div>
           <div className="flex flex-col flex-1 gap-3">
-            <div className="h-5 text-[#111827] rounded-sm font-medium">
-              {data.name} - {location.lat}, {location.lon}
+            <div className="h-5 text-deleteBtn rounded-sm font-bold">
+              There was an error loading data for {location.lat} -{" "}
+              {location.lon}
             </div>
-            <div className="h-3 text-gray-500 text-sm font-medium rounded-sm capitalize">
-              {data.weather[0].description}
-            </div>
+            <div className="h-3 text-gray-500 text-sm font-medium rounded-sm capitalize"></div>
           </div>
           <div className="rounded h-10 w-[162px] flex items-center text-sm text-white overflow-hidden">
             <button
@@ -63,18 +54,14 @@ const LocationListItem: React.FC<LocationListItemProps> = ({ location }) => {
                 <BsArrowUpRight strokeWidth="0.5" />
               </span>
             </span>
-            <span>{data.wind.speed}KM/H</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span>Humidity</span>
-            <span>{data.main.humidity / 100}</span>
           </div>
         </div>
       </div>
-    );
-  }
-
-  return <LocationListItemError location={location} />;
+    </div>
+  );
 };
 
-export default LocationListItem;
+export default LocationListItemError;
